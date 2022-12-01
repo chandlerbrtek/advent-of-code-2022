@@ -1,3 +1,3 @@
-module example/user/hello
+module example/user/day1
 
 go 1.19
