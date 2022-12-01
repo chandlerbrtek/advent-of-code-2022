@@ -7,7 +7,7 @@ import (
     "os"
 	"strconv"
 	"reflect"
-	"math"
+	"sort"
 )
 
 func main() {
@@ -21,7 +21,7 @@ func main() {
     // read the file line by line using scanner
     scanner := bufio.NewScanner(f)
 	total := 0.0
-	max := 0.0
+	var s []int
 
     for scanner.Scan() {
         // do something with a line
@@ -33,13 +33,19 @@ func main() {
 			}
 			total += float64(val)
 		} else {
-			max = math.Max(max, total)
+			s = append(s, int(total))
 			total = 0
 		}
     }
 
-	fmt.Printf("answer part 1: %d\n", int(max))
+	sort.Slice(s, func(i, j int) bool {
+		return s[i] > s[j]
+	})
 
+	fmt.Printf("Answer 1: %d\n", s[0])
+	fmt.Printf("Answer 2: %d\n", s[0] + s[1] + s[2])
+	
+	
     if err := scanner.Err(); err != nil {
         log.Fatal(err)
     }
