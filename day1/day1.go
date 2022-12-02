@@ -11,7 +11,7 @@ import (
 )
 
 func main() {
-    f, err := os.Open("inputs/1.txt")
+    f, err := os.Open("1.txt")
     if err != nil {
         log.Fatal(err)
     }
